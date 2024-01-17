@@ -1,0 +1,11 @@
+line_length:
+- 400 #warning
+- 600 #error
+
+excluded:
+  - Pods
+  - Realm
+
+included:
+  # Добавьте необходимые правила или файлы, которые необходимо включить
+  - ToDo
