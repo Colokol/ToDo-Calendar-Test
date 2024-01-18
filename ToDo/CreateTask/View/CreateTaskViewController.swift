@@ -1,9 +1,9 @@
-    //
-    //  CreateTaskViewController.swift
-    //  ToDo
-    //
-    //  Created by Uladzislau Yatskevich on 9.01.24.
-    //
+//
+//  CreateTaskViewController.swift
+//  ToDo
+//
+//  Created by Uladzislau Yatskevich on 9.01.24.
+//
 
 import UIKit
 import FSCalendar
@@ -15,7 +15,7 @@ protocol CreateTaskViewProtocol: AnyObject {
 
 class CreateTaskViewController: UIViewController, CreateTaskViewProtocol {
 
-    var presenter: CreateTaskPresenterProtocol?
+    var presenter: CreateTaskPresenterProtocol!
 
     private let timePickerView: UIPickerView = {
         let pickerView = UIPickerView()
@@ -32,13 +32,10 @@ class CreateTaskViewController: UIViewController, CreateTaskViewProtocol {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter = CreateTaskPresenter(view: self)
         presenter?.calendar.delegate = self
-        
         descriptionTextView.delegate = self
         configureTextField()
         hideKeyboard()
-
     }
 
     @IBAction func addTaskButtonPress(_ sender: UIButton) {
@@ -69,12 +66,10 @@ class CreateTaskViewController: UIViewController, CreateTaskViewProtocol {
         timePickerView.dataSource = self
     }
 
-
     func navigateToRoot() {
         navigationController?.popToRootViewController(animated: true)
     }
 }
-
 
     // MARK: - UIPickerViewDelegate, UIPickerViewDataSource method
 extension CreateTaskViewController: UIPickerViewDelegate, UIPickerViewDataSource {
@@ -97,19 +92,6 @@ extension CreateTaskViewController: UIPickerViewDelegate, UIPickerViewDataSource
             endTimeTextField.text = presenter?.timeIntervals[row]
         }
     }
-
-    private func hideKeyboard() {
-        let singleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.singleTap(sender:)))
-        singleTapGestureRecognizer.numberOfTapsRequired = 1
-        singleTapGestureRecognizer.isEnabled = true
-        singleTapGestureRecognizer.cancelsTouchesInView = false
-        self.view.addGestureRecognizer(singleTapGestureRecognizer)
-    }
-
-    @objc func singleTap(sender: UITapGestureRecognizer) {
-        view.endEditing(true)
-    }
-
 }
 
     // MARK: - FSCalendar Delegate method
@@ -123,9 +105,25 @@ extension CreateTaskViewController: FSCalendarDelegate {
     }
 }
 
+// MARK: - TextView method
 extension CreateTaskViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         guard textView.text == "Краткое описание" else {return}
         textView.text = ""
+    }
+}
+
+// MARK: - Hide Keyboard
+private extension CreateTaskViewController {
+     func hideKeyboard() {
+        let singleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.singleTap(sender:)))
+        singleTapGestureRecognizer.numberOfTapsRequired = 1
+        singleTapGestureRecognizer.isEnabled = true
+        singleTapGestureRecognizer.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(singleTapGestureRecognizer)
+    }
+
+    @objc func singleTap(sender: UITapGestureRecognizer) {
+        view.endEditing(true)
     }
 }

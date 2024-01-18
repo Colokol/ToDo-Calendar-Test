@@ -19,4 +19,8 @@ post_install do |installer|
    end
 end
 
+target 'ToDoTests' do
+  pod 'FSCalendar'
+end
+
 end

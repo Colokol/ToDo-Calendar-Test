@@ -1,9 +1,9 @@
-    //
-    //  Builder.swift
-    //  ToDo
-    //
-    //  Created by Uladzislau Yatskevich on 17.01.24.
-    //
+//
+//  Builder.swift
+//  ToDo
+//
+//  Created by Uladzislau Yatskevich on 17.01.24.
+//
 
 import Foundation
 import UIKit
@@ -15,6 +15,7 @@ class Builder {
             return UIViewController()
         }
         let presenter = CreateTaskPresenter(view: createViewController)
+        createViewController.presenter = presenter
         return createViewController
     }
 }

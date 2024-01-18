@@ -11,8 +11,13 @@ class RealmManager {
 
     static let shared = RealmManager()
 
-    private let realm = try! Realm()
-
+    private var realm: Realm {
+        do {
+            return try Realm()
+        } catch {
+            fatalError("Невозможно создать экземпляр Realm: \(error)")
+        }
+    }
     var tasks: [Task] {
         let set = realm.objects(Task.self)
         return Array(set)
@@ -24,7 +29,7 @@ class RealmManager {
                 realm.delete(task)
             }
         } catch {
-            print(error.localizedDescription)
+            print("Ошибка при сохранении задачи: \(error)")
         }
     }
 

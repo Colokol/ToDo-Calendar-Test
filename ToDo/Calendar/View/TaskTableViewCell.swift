@@ -1,9 +1,9 @@
-    //
-    //  TaskTableViewCell.swift
-    //  ToDo
-    //
-    //  Created by Uladzislau Yatskevich on 10.01.24.
-    //
+//
+//  TaskTableViewCell.swift
+//  ToDo
+//
+//  Created by Uladzislau Yatskevich on 10.01.24.
+//
 
 import UIKit
 
@@ -26,6 +26,4 @@ class TaskTableViewCell: UITableViewCell {
               let endTime = presenter?.formatTime(date: task.dateFinish) else {return}
         timeLabel.text = "\(startTime) - \(String(describing: endTime))"
     }
-
-
 }

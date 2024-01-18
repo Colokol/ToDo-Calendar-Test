@@ -7,7 +7,11 @@
 
 import Foundation
 
-class NetworkService {
+protocol NetworkServiceProtocol {
+    func loadTask(completion: @escaping (Result<[Task], Error>) -> Void) 
+}
+
+class NetworkService: NetworkServiceProtocol {
 
     let jsonDecoder: JSONDecoder = {
         let decoder = JSONDecoder()
@@ -15,7 +19,7 @@ class NetworkService {
         return decoder
     }()
 
-    func loadTask(completion: @escaping (Result<[Task],Error>) -> Void) {
+    func loadTask(completion: @escaping (Result<[Task], Error>) -> Void) {
 
         if let path = Bundle.main.path(forResource: "TaskList", ofType: "json") {
             do {

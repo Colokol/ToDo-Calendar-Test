@@ -1,9 +1,9 @@
-    //
-    //  CreateTaskPresenter.swift
-    //  ToDo
-    //
-    //  Created by Uladzislau Yatskevich on 10.01.24.
-    //
+//
+//  CreateTaskPresenter.swift
+//  ToDo
+//
+//  Created by Uladzislau Yatskevich on 10.01.24.
+//
 
 import Foundation
 import FSCalendar
@@ -56,9 +56,7 @@ class CreateTaskPresenter: CreateTaskPresenterProtocol {
         task.name = name
         task.dateStart = convertToDouble(dateString: startDate, timeString: startTime)
         task.dateFinish = convertToDouble(dateString: endDate, timeString: endTime)
-        
         task.descriptions = (task.descriptions != "Краткое описание") ? description : ""
-
 
         guard task.dateStart < task.dateFinish else {
             view?.showAlert(message: "Неверно указан временной промежуток")

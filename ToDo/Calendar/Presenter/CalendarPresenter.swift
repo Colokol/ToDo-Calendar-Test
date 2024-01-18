@@ -9,6 +9,7 @@ import Foundation
 import FSCalendar
 
 protocol CalendarPresenterProtocol {
+    var networkService: NetworkServiceProtocol {get set}
     var taskArray: [Task] {get set}
     var currentTask: [Task] {get set}
     func updateCurrentTasks(for date: Date)
@@ -16,8 +17,9 @@ protocol CalendarPresenterProtocol {
 }
 
 class CalendarPresenter: CalendarPresenterProtocol {
-    
-    let networkService = NetworkService()
+
+    let realmManager = RealmManager.shared
+    var networkService: NetworkServiceProtocol = NetworkService()
 
     var taskArray: [Task] = []
     var currentTask: [Task] = []
@@ -34,14 +36,14 @@ class CalendarPresenter: CalendarPresenterProtocol {
     }
 
     func loadTask() {
-        taskArray = RealmManager.shared.tasks
+        taskArray = realmManager.tasks
 
         networkService.loadTask(completion: { result in
             switch result {
-                case .success(let task):
-                    self.taskArray.append(contentsOf: task)
-                case .failure(let error):
-                    print(error)
+            case .success(let task):
+                self.taskArray.append(contentsOf: task)
+            case .failure(let error):
+                print(error)
             }
         })
 

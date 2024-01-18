@@ -20,7 +20,6 @@ class CalendarViewController: UIViewController, CalendarViewProtocol {
     @IBOutlet var taskTableView: UITableView!
     @IBOutlet var calendar: FSCalendar!
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
@@ -66,12 +65,10 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         presenter.currentTask.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell", for: indexPath) as? TaskTableViewCell else { return UITableViewCell()}
         cell.configureCell(task: presenter.currentTask[indexPath.row])
         return cell
     }
 }
-
-
