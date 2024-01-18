@@ -94,16 +94,20 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xUS-TC-kL5">
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="xUS-TC-kL5">
                                 <rect key="frame" x="328" y="767" width="50" height="50"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="JOL-GV-kzk"/>
                                     <constraint firstAttribute="height" constant="50" id="xdh-hB-4K8"/>
                                 </constraints>
                                 <color key="tintColor" systemColor="viewFlipsideBackgroundColor"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <size key="titleShadowOffset" width="-4" height="2"/>
-                                <state key="normal" image="plus"/>
+                                <size key="titleShadowOffset" width="9" height="19"/>
+                                <state key="normal" image="plus">
+                                    <color key="titleShadowColor" white="0.0" alpha="0.85614134929999997" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small" weight="thin"/>
+                                </state>
                                 <connections>
                                     <action selector="addTaskButtonPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rPM-Zk-MEk"/>
                                 </connections>
@@ -282,7 +286,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="plus" width="322.5" height="322.5"/>
+        <image name="plus" width="1080" height="1080"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
